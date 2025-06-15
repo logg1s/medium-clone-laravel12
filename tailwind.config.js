@@ -9,6 +9,8 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    darkMode: 'class', // Use class-based dark mode instead of media query
+
     theme: {
         extend: {
             fontFamily: {

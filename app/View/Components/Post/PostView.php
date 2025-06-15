@@ -6,13 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PostItem extends Component
+class PostView extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public $post)
+    public function __construct(public $posts)
     {
+        //
     }
 
     /**
@@ -20,6 +21,6 @@ class PostItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.post-item');
+        return view('components.post.post-view');
     }
 }

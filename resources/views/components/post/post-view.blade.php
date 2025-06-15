@@ -1,5 +1,5 @@
 @forelse ($posts as $post)
-    <x-postItem :$post />
+    <x-post.post-item :$post />
 @empty
     <div class='text-center text-gray-600 text-xl p-5'>{{ __('No Posts Found') }}</div>
 @endforelse

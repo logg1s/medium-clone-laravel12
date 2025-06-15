@@ -7,7 +7,7 @@
                                 aria-current="page">All</a>
                         </li>
                         @foreach ($categories as $category)
-                            <x-categoryTabItem :name='$category->name' />
+                            <x-category.category-tab-item :name='$category->name' />
                         @endforeach
                     </ul>
                 </div>

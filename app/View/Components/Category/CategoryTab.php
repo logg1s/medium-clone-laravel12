@@ -21,6 +21,6 @@ class CategoryTab extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.category-tab');
+        return view('components.category.category-tab');
     }
 }

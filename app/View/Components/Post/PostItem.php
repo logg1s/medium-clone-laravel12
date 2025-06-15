@@ -6,19 +6,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CategoryTabItem extends Component
+class PostItem extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public $name = ''
-    ) {
-    }
-
-    public function shouldRender()
+    public function __construct(public $post)
     {
-        return !empty($this->name) && is_string($this->name);
     }
 
     /**
@@ -26,6 +20,6 @@ class CategoryTabItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.category-tab-item');
+        return view('components.post.post-item');
     }
 }

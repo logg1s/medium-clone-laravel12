@@ -1,3 +1,5 @@
 {
-    "No Posts Found": "Không có bài viết nào"
+    "No Posts Found": "Không có bài viết nào",
+    "The title field is required.": "Tiêu đề không được để trống.",
+    "The content field is required.": "Nội dung không được để trống."
 }

@@ -6,7 +6,7 @@
                 <div class="bg-white shadown-sm sm:rounded-lg p-8 flex flex-col gap-5">
                     {{-- File --}}
                     <div>
-                        <x-input-label for="image" :value="__('Image')" />
+                        <x-input-label for="image" :value="__('Image')" :isRequire=true />
                         <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"
                             :value="old('image')" accept="image/*" />
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />

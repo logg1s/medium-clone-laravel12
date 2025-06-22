@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PostRequest extends FormRequest
 {
@@ -24,10 +26,11 @@ class PostRequest extends FormRequest
         $action = $this->route()->getName();
         return match ($action) {
             'post.store' => [
-                'image' => 'nullable|image|max:2048',
-                'title' => 'required|string|max:50',
-                'content' => 'required|string|max:2000',
-                'category_id' => 'required|exists:categories,id'
+                'image' => ['required', 'image', 'max:2048'],
+                'title' => ['required', 'string', 'max:50'],
+                'content' => ['required', 'string', 'max:2000'],
+                'category_id' => ['required', 'exists:categories,id'],
+                'published_at' => ['nullable', Rule::date()->format('Y-m-d H:i:s'),],
             ]
         };
     }
@@ -37,5 +40,11 @@ class PostRequest extends FormRequest
             'title.required' => __("The title field is required."),
             'content.required' => __("The content field is required.")
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $errors = $validator->errors();
+        return response()->json($errors, 422);
     }
 }

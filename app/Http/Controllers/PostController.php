@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Str;
 
 class PostController extends Controller
 {
@@ -33,7 +34,16 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $request->validated();
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+        $data['slug'] = Str::slug($data['title']);
+
+        if (!empty($data['image'])) {
+            $data['image'] = $data['image']->store('images', 'public');
+        }
+
+        Post::create($data);
+        return redirect()->route('dashboard');
     }
 
     /**

@@ -1,12 +1,14 @@
 @php
-    $categories = isset($categories) && is_iterable($categories) ? $categories : [];
-    $posts = isset($posts) && is_iterable($posts) ? $posts : [];
+    $categories ??= collect([]);
+    $posts ??= collect([]);
 @endphp
 
 <x-app-layout>
     <div class="py-10">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <x-category.category-tab :$categories />
+            @if ($categories->isNotEmpty())
+                <x-category.category-tab :$categories />
+            @endif
             <div class="flex flex-col gap-10 rounded-lg">
                 <x-post.post-view :$posts />
             </div>

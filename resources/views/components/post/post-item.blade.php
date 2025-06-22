@@ -6,7 +6,9 @@
             <p class="font-normal text-gray-700 dark:text-gray-400">
                 {{ Str::words($post->content ?? '', 50) }}</p>
         </a>
-        <a href={{ Storage::url($post->image) }}>
-            <img class="rounded-r-lg w-56 h-56 object-cover" src={{ Storage::url($post->image) }} alt="Post image" />
-        </a>
+        @if (!empty($post->image) && Storage::disk('public')->exists($post->image))
+            <a href={{ Storage::url($post->image) }}>
+                <img class="rounded-r-lg w-56 h-56 object-cover" src={{ Storage::url($post->image) }} alt="Post image" />
+            </a>
+        @endif
     </div>

@@ -4,7 +4,7 @@
             <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="bg-white shadown-sm sm:rounded-lg p-8 flex flex-col gap-5">
-                    {{-- File --}}
+                    {{-- Image --}}
                     <div>
                         <x-input-label for="image" :value="__('Image')" :isRequire=true />
                         <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"

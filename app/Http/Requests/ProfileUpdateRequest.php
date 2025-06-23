@@ -29,7 +29,7 @@ class ProfileUpdateRequest extends FormRequest
             'username' => [
                 'required',
                 'string',
-                'max:50',
+                'max:255',
                 'lowercase',
                 Rule::unique(User::class)->ignore($this->user()->id)
             ],

@@ -20,7 +20,7 @@
         @if (!empty($user->image) && Storage::disk('public')->exists($user->image))
             <x-input-label for="image" :value="__('Current Avatar')" />
             <div>
-                <img src="{{ Storage::url($user->image) }}" class="rounded-full object-cover size-60" alt="Avatar">
+                <img src="{{ $user->avatarUrl() }}" class="rounded-full object-cover size-60" alt="Avatar">
             </div>
         @endif
 

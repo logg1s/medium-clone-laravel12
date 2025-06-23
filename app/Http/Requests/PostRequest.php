@@ -27,8 +27,8 @@ class PostRequest extends FormRequest
         return match ($action) {
             'post.store' => [
                 'image' => ['required', 'image', 'max:2048'],
-                'title' => ['required', 'string', 'max:50'],
-                'content' => ['required', 'string', 'max:2000'],
+                'title' => ['required', 'string'],
+                'content' => ['required', 'string'],
                 'category_id' => ['required', 'exists:categories,id'],
                 'published_at' => ['nullable', Rule::date()->format('Y-m-d H:i:s'),],
             ]

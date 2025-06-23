@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -48,5 +49,13 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function avatarUrl(): string
+    {
+        if (!empty($this->image) && Storage::disk('public')->exists($this->image)) {
+            return Storage::url($this->image);
+        }
+        return "https://ui-avatars.com/api/?name=" . $this->name;
     }
 }

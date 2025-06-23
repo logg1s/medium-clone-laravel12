@@ -1,5 +1,6 @@
     <div class="flex bg-white border-2 border-gray-200 sm:rounded-lg">
-        <a href="#" class="p-5 flex-1 justify-center flex flex-col gap-2">
+        <a href="{{ route('post.show', ['username' => $post->user->username, 'post' => $post->slug]) }}"
+            class="p-5 flex-1 justify-center flex flex-col gap-2">
             <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">
                 {{ $post->title ?? '' }}
             </h5>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Post;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class PostView extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.post.post-view');
+        return view("components.post.post-view");
     }
 }

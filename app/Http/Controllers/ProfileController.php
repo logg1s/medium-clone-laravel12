@@ -17,8 +17,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
+        return view("profile.edit", [
+            "user" => $request->user(),
         ]);
     }
 
@@ -28,23 +28,29 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        if (!empty($data['image'])) {
-            $data['image'] = $data['image']->store('images', 'public');
+        if (!empty($data["image"])) {
+            $data["image"] = $data["image"]->store("images", "public");
 
-            if (!empty($user->image) && Storage::disk('public')->exists($request->user()->image)) {
-                Storage::disk('public')->delete($request->user()->image);
+            if (
+                !empty($user->image) &&
+                Storage::disk("public")->exists($request->user()->image)
+            ) {
+                Storage::disk("public")->delete($request->user()->image);
             }
         }
 
         $request->user()->fill($data);
 
-        if ($request->user()->isDirty('email')) {
+        if ($request->user()->isDirty("email")) {
             $request->user()->email_verified_at = null;
         }
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route("profile.edit")->with(
+            "status",
+            "profile-updated"
+        );
     }
 
     /**
@@ -52,16 +58,19 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        $request->validateWithBag("userDeletion", [
+            "password" => ["required", "current_password"],
         ]);
 
         $user = $request->user();
 
         Auth::logout();
 
-        if (!empty($user->image) && Storage::disk('public')->exists($user->image)) {
-            Storage::disk('public')->delete($user->image);
+        if (
+            !empty($user->image) &&
+            Storage::disk("public")->exists($user->image)
+        ) {
+            Storage::disk("public")->delete($user->image);
         }
 
         $user->delete();
@@ -69,6 +78,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to("/");
     }
 }

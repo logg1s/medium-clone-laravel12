@@ -25,20 +25,23 @@ class PostRequest extends FormRequest
     {
         $action = $this->route()->getName();
         return match ($action) {
-            'post.store' => [
-                'image' => ['required', 'image', 'max:2048'],
-                'title' => ['required', 'string'],
-                'content' => ['required', 'string'],
-                'category_id' => ['required', 'exists:categories,id'],
-                'published_at' => ['nullable', Rule::date()->format('Y-m-d H:i:s'),],
-            ]
+            "post.store" => [
+                "image" => ["required", "image", "max:2048"],
+                "title" => ["required", "string"],
+                "content" => ["required", "string"],
+                "category_id" => ["required", "exists:categories,id"],
+                "published_at" => [
+                    "nullable",
+                    Rule::date()->format("Y-m-d H:i:s"),
+                ],
+            ],
         };
     }
     public function messages()
     {
         return [
-            'title.required' => __("The title field is required."),
-            'content.required' => __("The content field is required.")
+            "title.required" => __("The title field is required."),
+            "content.required" => __("The content field is required."),
         ];
     }
 

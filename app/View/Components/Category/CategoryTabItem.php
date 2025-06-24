@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Category;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,10 +11,7 @@ class CategoryTabItem extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public $name = ''
-    ) {
-    }
+    public function __construct(public $name = "") {}
 
     public function shouldRender()
     {
@@ -26,6 +23,6 @@ class CategoryTabItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.category.category-tab-item');
+        return view("components.category.category-tab-item");
     }
 }

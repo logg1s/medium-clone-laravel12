@@ -17,8 +17,8 @@ class PostController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
-        return view('dashboard', compact('categories', 'posts'));
+        $posts = Post::orderBy("created_at", "desc")->paginate(10);
+        return view("dashboard", compact("categories", "posts"));
     }
 
     /**
@@ -27,7 +27,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('post.create', compact('categories'));
+        return view("post.create", compact("categories"));
     }
 
     /**
@@ -36,15 +36,15 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $data = $request->validated();
-        $data['user_id'] = auth()->id();
-        $data['slug'] = Str::slug($data['title']);
+        $data["user_id"] = auth()->id();
+        $data["slug"] = Str::slug($data["title"]);
 
-        if (!empty($data['image'])) {
-            $data['image'] = $data['image']->store('images', 'public');
+        if (!empty($data["image"])) {
+            $data["image"] = $data["image"]->store("images", "public");
         }
 
         Post::create($data);
-        return redirect()->route('dashboard');
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function show(string $username, Post $post)
     {
-        return view('post.show', compact('post'));
+        return view("post.show", compact("post"));
     }
 
     /**

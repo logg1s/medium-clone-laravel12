@@ -14,17 +14,17 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Technology',
-            'Health',
-            'Science',
-            'Sports',
-            'Politics',
-            'Entertainment'
+            "Technology",
+            "Health",
+            "Science",
+            "Sports",
+            "Politics",
+            "Entertainment",
         ];
 
         foreach ($categories as $category) {
             Category::firstOrCreate([
-                'name' => $category
+                "name" => $category,
             ]);
         }
     }

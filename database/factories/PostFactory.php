@@ -21,13 +21,13 @@ class PostFactory extends Factory
     {
         $title = fake()->sentence();
         return [
-            'image' => 'https://picsum.photos/640/480',
-            'title' => $title,
-            'slug' => Str::slug($title),
-            'content' => fake()->paragraph(),
-            'category_id' => Category::inRandomOrder()->first()->id,
-            'user_id' => User::first()->id,
-            'published_at' => fake()->dateTime()
+            "image" => "https://picsum.photos/640/480",
+            "title" => $title,
+            "slug" => Str::slug($title),
+            "content" => fake()->paragraph(),
+            "category_id" => Category::inRandomOrder()->first()->id,
+            "user_id" => User::first()->id,
+            "published_at" => fake()->dateTime(),
         ];
     }
 }

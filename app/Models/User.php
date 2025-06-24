@@ -20,12 +20,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
-        'username',
-        'name',
-        'email',
-        'password',
-        'image',
-        'bio'
+        "username",
+        "name",
+        "email",
+        "password",
+        "image",
+        "bio",
     ];
 
     /**
@@ -33,10 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var list<string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ["password", "remember_token"];
 
     /**
      * Get the attributes that should be cast.
@@ -46,16 +43,24 @@ class User extends Authenticatable implements MustVerifyEmail
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            "email_verified_at" => "datetime",
+            "password" => "hashed",
         ];
     }
 
-    public function avatarUrl(): string
+    public function getAvatarUrl(): string
     {
-        if (!empty($this->image) && Storage::disk('public')->exists($this->image)) {
+        if (
+            !empty($this->image) &&
+            Storage::disk("public")->exists($this->image)
+        ) {
             return Storage::url($this->image);
         }
         return "https://ui-avatars.com/api/?name=" . $this->name;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

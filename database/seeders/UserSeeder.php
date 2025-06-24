@@ -15,11 +15,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $name = 'long';
+        $name = "long";
         User::factory()->create([
-            'name' => $name,
-            'email' => 'doremon1234567890@gmail.com',
-            'username' => Str::slug($name, '_'),
+            "name" => $name,
+            "email" => "doremon1234567890@gmail.com",
+            "username" => Str::slug($name, "_"),
         ]);
     }
 }
